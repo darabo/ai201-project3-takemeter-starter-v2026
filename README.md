@@ -39,8 +39,26 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
+TakeMeter sorts public, non-NSFW question submissions from r/NoStupidQuestions.
+Each example combines the submission title and body, but excludes comments,
+deleted posts, and megathreads. The classifier assigns every question to one
+of four intent-based labels: `explanation`, `practical_guidance`,
+`personal_advice`, or `social_judgment`.
+
+I read recent posts before choosing these labels so that the distinctions came
+from the community's actual questions rather than from a topic list I invented
+in advance. The goal is to distinguish what kind of answer a question is
+seeking, not whether the question is good, important, or well written.
+
+### Stretch work declared before building
+
+- I will use a fourth label, `social_judgment`, because questions about what
+  people or society consider normal or acceptable are distinct from the other
+  three kinds of requests.
+- After the initial labelled set is complete, I will add 50 examples to the
+  thinnest label and document how its count changed.
+- I will run a second training run with exactly one changed hyperparameter and
+  document what changed and which reported numbers moved.
 
 
 
@@ -54,33 +72,64 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `explanation`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** A question that asks why or how a fact, system, institution,
+or observable phenomenon works, rather than asking what the author should do.
 
 **Example 1:**
->
+> Why do babies cry immediately after they're born? Like, what actually makes
+> them start crying?
 
 **Example 2:**
->
+> Why do successful top-level football managers not take jobs at lower-league
+> clubs later in their careers?
+
+### `practical_guidance`
+
+**Definition:** A question that asks for a method, recommendation, or action
+to solve a concrete practical or technical problem.
+
+**Example 1:**
+> Best Ways/Tools to Safely Keep Track of Passwords
+
+**Example 2:**
+> TikTok question regarding messages and chats: if you block a person, does it
+> delete all previous conversations with that person?
+
+### `personal_advice`
+
+**Definition:** A question about the author's own emotional, social, or
+interpersonal situation that asks what they should do, say, or change.
+
+**Example 1:**
+> Is always being the bigger person actually helpful in relationships?
+
+**Example 2:**
+> I look scary and miserable apparently, any advice on how to fix this?
+
+### `social_judgment`
+
+**Definition:** A question that asks whether a behavior, belief, or social
+norm is common, acceptable, justified, or preferable in a broader social
+sense.
+
+**Example 1:**
+> Can someone live an entirely fulfilling life without ever experiencing
+> romantic love?
+
+**Example 2:**
+> Should all social media apps have a setting to not show any AI content at
+> all, if you don't want to see it?
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `personal_advice` and `social_judgment`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**The decision rule I used every time:** If the central request is what the
+author should do in their own specific situation, use `personal_advice`. If it
+primarily asks how people or society view a behavior or belief, use
+`social_judgment`, even when the author includes a personal example.
 
 
 
