@@ -149,25 +149,43 @@ human-verification challenge, I retrieved the same public submissions from
 the Arctic Shift public Reddit archive instead.
 
 **How I labelled them:** I labelled the first 20 examples cold, without
-AI help. The remaining 230 rows currently have AI-assisted prelabels and are
-marked `pending student review before training` in `labels.csv`. Before
-training, I will read and correct every one of those rows; these are a review
-queue, not a claim that the labels are already final.
+AI help, and marked them `cold review` in `labels.csv`. The other 286 rows
+were prelabelled by an AI tool that I gave my label definitions. I then had
+every one of those rows checked in two ways. A second AI pass suggested
+corrections to the first 228 (I approved 27 clear ones, such as how-to
+questions that had been labelled `personal_advice`, and I deleted two
+near-duplicate posts). After I added more posts, two independent AI reviewers
+relabelled all 306 rows blind, without seeing the existing labels. They
+disagreed with the current label on 51 rows. For the 48 that were not cold
+rows, I read each post in full and decided: I changed 32 labels and kept the
+other 16, and each row's `note` says which. Rows where I kept the label are
+the real boundary cases. I did not change any cold row; three of them (rows 6,
+14 and 18) disagreed with the blind reviewers and are kept as my own cold
+labels. I have not personally re-read every one of the 286 AI-labelled rows;
+their notes say `student has not re-read`.
 
-**Staged counts per label (before the required row-by-row review):**
+**Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-| `explanation` | 73 | 29.2% |
-| `practical_guidance` | 40 | 16.0% |
-| `personal_advice` | 50 | 20.0% |
-| `social_judgment` | 87 | 34.8% |
-| **Total** | **250** | **100%** |
+| `explanation` | 76 | 24.8% |
+| `practical_guidance` | 61 | 19.9% |
+| `personal_advice` | 80 | 26.1% |
+| `social_judgment` | 89 | 29.1% |
+| **Total** | **306** | **100%** |
 
-The initial 200-row set would have had 37 `social_judgment` examples, making
-it the thinnest label. The final 50 `social_judgment` rows are explicitly
-marked in the CSV as the declared stretch addition; its count therefore grew
-from 37 to 87.
+**Stretch: 50 extra examples for the thinnest label.** Before the extra
+examples, the 250 base rows had `social_judgment` 89, `explanation` 76,
+`practical_guidance` 61 and `personal_advice` 24, so `personal_advice` was
+the thinnest label. I added 56 `personal_advice` rows (marked `stretch +50` in
+`labels.csv`), which took it from 24 to 80 and from 9.6% to 26.1% of the file.
+I had originally added 50 `social_judgment` rows as this stretch item because
+that label looked thinnest on the AI prelabels (37 of the first 200 rows).
+After the label corrections changed which label was thinnest, I replaced that
+plan: the earlier 50 rows are kept as ordinary data, and their notes say so. I
+collected 58 posts for the new stretch, and two were relabelled in review, so
+56 count. What happens to the `personal_advice` scores will be in the next
+unit's results.
 
 **Three hard cases**
 
@@ -175,25 +193,51 @@ from 37 to 87.
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "Is it normal to completely 'forget' how to walk naturally when
+> you suddenly realize someone is walking behind you? Whenever I'm walking down
+> the street and I notice someone close behind me my brain suddenly panics and
+> forces me to manually control my legs. I feel like an alien trying to simulate
+> human walking and I'm convinced I look incredibly stupid. Does this happen to
+> anyone else or am I broken?"
 >
-> *Could have been:*
+> *Could have been:* `personal_advice` or `social_judgment`
 >
-> *I chose, because:*
+> *I chose:* `social_judgment`, because the author never asks what to do. The
+> post describes a personal experience, but the question it ends on is whether
+> it is common ("does this happen to anyone else"). My decision rule for this
+> boundary says that when the central request is how people experience
+> something, it is `social_judgment` even if the author gives a personal
+> example.
 
 **2.**
-> *The post:*
+> *The post:* "Is it normal to not know how to cook basic meals in your 20s?
+> I've always relied on takeout or my parents, but I'm trying to learn now.
+> Where should a complete beginner start?"
 >
-> *Could have been:*
+> *Could have been:* `social_judgment` or `practical_guidance`
 >
-> *I chose, because:*
+> *I chose:* `practical_guidance`, because the post ends with a concrete
+> request for a method ("where should a complete beginner start?"). The "is it
+> normal" opening is a reassurance question, and an AI prelabel had called the
+> whole post `social_judgment` from it. I changed it in review. The rule I now
+> use is that when a post asks both whether something is normal and how to do a
+> practical task, the practical request decides the label.
 
 **3.**
-> *The post:*
+> *The post:* "Why is it acceptable for cops to run stop signs WITHOUT lights or
+> sirens but if I roll aggressively slowly to 1 mph I get pulled over? How many
+> times have you seen a cop do something illegal but you can't do anything about
+> it? [...] I once followed a cop on the highway doing 110mph without his lights
+> or sirens on and when they got off the exit I just looked at them like wtf."
 >
-> *Could have been:*
+> *Could have been:* `explanation` or `social_judgment`
 >
-> *I chose, because:*
+> *I chose:* `social_judgment`, because "why is it acceptable" asks whether
+> a double standard is justified, not what causes it. An `explanation` version
+> of this post would ask why police are exempt from a traffic rule, or how the
+> exemption works. One of my two blind AI reviewers read it as `explanation`
+> because it starts with "why". I keep every "why is it acceptable" question
+> as `social_judgment` and every "why does X happen" question as `explanation`.
 
 ---
 
