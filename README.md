@@ -193,25 +193,51 @@ unit's results.
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "Is it normal to completely 'forget' how to walk naturally when
+> you suddenly realize someone is walking behind you? Whenever I'm walking down
+> the street and I notice someone close behind me my brain suddenly panics and
+> forces me to manually control my legs. I feel like an alien trying to simulate
+> human walking and I'm convinced I look incredibly stupid. Does this happen to
+> anyone else or am I broken?"
 >
-> *Could have been:*
+> *Could have been:* `personal_advice` or `social_judgment`
 >
-> *I chose, because:*
+> *I chose:* `social_judgment`, because the author never asks what to do. The
+> post describes a personal experience, but the question it ends on is whether
+> it is common ("does this happen to anyone else"). My decision rule for this
+> boundary says that when the central request is how people experience
+> something, it is `social_judgment` even if the author gives a personal
+> example.
 
 **2.**
-> *The post:*
+> *The post:* "Is it normal to not know how to cook basic meals in your 20s?
+> I've always relied on takeout or my parents, but I'm trying to learn now.
+> Where should a complete beginner start?"
 >
-> *Could have been:*
+> *Could have been:* `social_judgment` or `practical_guidance`
 >
-> *I chose, because:*
+> *I chose:* `practical_guidance`, because the post ends with a concrete
+> request for a method ("where should a complete beginner start?"). The "is it
+> normal" opening is a reassurance question, and an AI prelabel had called the
+> whole post `social_judgment` from it. I changed it in review. The rule I now
+> use is that when a post asks both whether something is normal and how to do a
+> practical task, the practical request decides the label.
 
 **3.**
-> *The post:*
+> *The post:* "Why is it acceptable for cops to run stop signs WITHOUT lights or
+> sirens but if I roll aggressively slowly to 1 mph I get pulled over? How many
+> times have you seen a cop do something illegal but you can't do anything about
+> it? [...] I once followed a cop on the highway doing 110mph without his lights
+> or sirens on and when they got off the exit I just looked at them like wtf."
 >
-> *Could have been:*
+> *Could have been:* `explanation` or `social_judgment`
 >
-> *I chose, because:*
+> *I chose:* `social_judgment`, because "why is it acceptable" asks whether
+> a double standard is justified, not what causes it. An `explanation` version
+> of this post would ask why police are exempt from a traffic rule, or how the
+> exemption works. One of my two blind AI reviewers read it as `explanation`
+> because it starts with "why". I keep every "why is it acceptable" question
+> as `social_judgment` and every "why does X happen" question as `explanation`.
 
 ---
 
