@@ -3,9 +3,7 @@
 # Copy these from your README so the baseline is judged on exactly the
 # definitions you wrote. baseline.py reads this file.
 #
-# Delete the examples below and put yours in.
-
-explanation: Is it asking for a fact, cause, name, or how something works?
-practical_guidance: Is it asking for a method or recommended action for a practical/technical task?
-personal_advice: Is it asking what the author should do in their own emotional, social, or relationship situation?
-social_judgment: Is it asking whether something is normal, acceptable, common, or preferable in society?
+explanation: A question that asks for a factual explanation, identification, or clarification about a fact, system, institution, or observable phenomenon, rather than asking what the author should do or how people should judge it.
+practical_guidance: A question that asks for a method, recommendation, or action to solve a concrete practical or technical problem.
+personal_advice: A question about the author's own emotional, social, or interpersonal situation that asks what they should do, say, or change.
+social_judgment: A question that asks whether a behavior, belief, or social norm is common, acceptable, justified, or preferable in a broader social sense.

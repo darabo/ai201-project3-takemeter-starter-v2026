@@ -88,8 +88,8 @@ least **0.40**.
 **Why this target:**
 
 The boundary between `personal_advice` and `social_judgment` is deliberately
-subtle, and the smallest label will have only about eight to ten examples in a
-15% held-out split. A 0.40 floor is demanding enough to catch a collapsed
+subtle, and the smallest label (about 39 of 250 rows) will have only about six
+examples in a 15% held-out split. A 0.40 floor is demanding enough to catch a collapsed
 label, while allowing for the volatility of a small test sample.
 
 
@@ -114,8 +114,8 @@ an `explanation` majority that would encourage the model to guess one label.
 
 ## 5.
 
-Across all three Unit 6 seeds, the most-confident third of held-out predictions
-has accuracy of at least **0.65** and is at least **0.10** more accurate than
+Across all three Unit 6 seeds, ranking held-out predictions by the model's top
+softmax probability, the most-confident third has accuracy of at least **0.65** and is at least **0.10** more accurate than
 the least-confident third.
 
 **Why this target:**

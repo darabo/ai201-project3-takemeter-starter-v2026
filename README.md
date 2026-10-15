@@ -158,8 +158,8 @@ queue, not a claim that the labels are already final.
 
 | Label | Count | Share |
 |---|---|---|
-| `explanation` | 73 | 29.2% |
-| `practical_guidance` | 40 | 16.0% |
+| `explanation` | 74 | 29.6% |
+| `practical_guidance` | 39 | 15.6% |
 | `personal_advice` | 50 | 20.0% |
 | `social_judgment` | 87 | 34.8% |
 | **Total** | **250** | **100%** |
