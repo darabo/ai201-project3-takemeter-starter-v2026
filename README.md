@@ -149,25 +149,32 @@ human-verification challenge, I retrieved the same public submissions from
 the Arctic Shift public Reddit archive instead.
 
 **How I labelled them:** I labelled the first 20 examples cold, without
-AI help. The remaining 230 rows currently have AI-assisted prelabels and are
-marked `pending student review before training` in `labels.csv`. Before
-training, I will read and correct every one of those rows; these are a review
-queue, not a claim that the labels are already final.
+AI help, and marked them `cold review` in `labels.csv`. The other 228 rows
+were prelabelled by an AI tool that I gave my label definitions. A second AI
+pass then read those rows and suggested changes. I approved 27 clear
+corrections (rows where the AI prelabel gave a how-to question the label
+`personal_advice`, or where the word "setup" had pushed a "why" question into
+`practical_guidance`), and each changed row says so in its `note`. I also
+deleted two near-duplicate posts. I have not yet read every one of the
+remaining prelabelled rows individually; the 200 rows still marked `pending
+student review before training` are the ones I have not checked row by row.
 
-**Staged counts per label (before the required row-by-row review):**
+**Counts per label (after the corrections above, before the remaining
+row-by-row review):**
 
 | Label | Count | Share |
 |---|---|---|
-| `explanation` | 74 | 29.6% |
-| `practical_guidance` | 39 | 15.6% |
-| `personal_advice` | 50 | 20.0% |
-| `social_judgment` | 87 | 34.8% |
-| **Total** | **250** | **100%** |
+| `explanation` | 78 | 31.5% |
+| `practical_guidance` | 50 | 20.2% |
+| `personal_advice` | 34 | 13.7% |
+| `social_judgment` | 86 | 34.7% |
+| **Total** | **248** | **100%** |
 
-The initial 200-row set would have had 37 `social_judgment` examples, making
-it the thinnest label. The final 50 `social_judgment` rows are explicitly
-marked in the CSV as the declared stretch addition; its count therefore grew
-from 37 to 87.
+The 50 stretch rows are marked `stretch +50` in the CSV. I added them to
+`social_judgment` because it was the thinnest label on the AI prelabels (37 of
+the first 200 rows). After the corrections, the first 198 rows (everything
+except the stretch rows) have 38 `social_judgment` and 33 `personal_advice`,
+so `personal_advice` is now the thinnest label.
 
 **Three hard cases**
 
