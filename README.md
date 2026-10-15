@@ -141,19 +141,33 @@ primarily asks how people or society view a behavior or belief, use
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Public submissions from
+r/NoStupidQuestions. Each row combines a post title and body; comments and
+author information were not collected. I excluded NSFW, deleted, and
+megathread posts. I first tried Reddit's public feed; when that required a
+human-verification challenge, I retrieved the same public submissions from
+the Arctic Shift public Reddit archive instead.
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** I labelled the first 20 examples cold, without
+AI help. The remaining 230 rows currently have AI-assisted prelabels and are
+marked `pending student review before training` in `labels.csv`. Before
+training, I will read and correct every one of those rows; these are a review
+queue, not a claim that the labels are already final.
 
-**Counts per label:**
+**Staged counts per label (before the required row-by-row review):**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `explanation` | 73 | 29.2% |
+| `practical_guidance` | 40 | 16.0% |
+| `personal_advice` | 50 | 20.0% |
+| `social_judgment` | 87 | 34.8% |
+| **Total** | **250** | **100%** |
+
+The initial 200-row set would have had 37 `social_judgment` examples, making
+it the thinnest label. The final 50 `social_judgment` rows are explicitly
+marked in the CSV as the declared stretch addition; its count therefore grew
+from 37 to 87.
 
 **Three hard cases**
 
