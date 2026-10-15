@@ -74,8 +74,9 @@ seeking, not whether the question is good, important, or well written.
 
 ### `explanation`
 
-**Definition:** A question that asks why or how a fact, system, institution,
-or observable phenomenon works, rather than asking what the author should do.
+**Definition:** A question that asks for a factual explanation, identification,
+or clarification about a fact, system, institution, or observable phenomenon,
+rather than asking what the author should do or how people should judge it.
 
 **Example 1:**
 > Why do babies cry immediately after they're born? Like, what actually makes
