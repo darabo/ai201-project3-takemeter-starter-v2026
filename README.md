@@ -123,6 +123,13 @@ sense.
 > Should all social media apps have a setting to not show any AI content at
 > all, if you don't want to see it?
 
+**What this label captures that the other three miss:** questions that ask
+whether something is normal, common, acceptable or justified ("is it normal
+to...", "why is it acceptable..."). They ask for no factual explanation, no
+method, and no decision about the author's own life, so `explanation`,
+`practical_guidance` and `personal_advice` all fit them badly, and a large share
+of r/NoStupidQuestions posts are of this kind.
+
 ### The hardest boundary
 
 **Which two labels:** `personal_advice` and `social_judgment`
@@ -150,19 +157,19 @@ the Arctic Shift public Reddit archive instead.
 
 **How I labelled them:** I labelled the first 20 examples cold, without
 AI help, and marked them `cold review` in `labels.csv`. The other 286 rows
-were prelabelled by an AI tool that I gave my label definitions. I then had
-every one of those rows checked in two ways. A second AI pass suggested
-corrections to the first 228 (I approved 27 clear ones, such as how-to
-questions that had been labelled `personal_advice`, and I deleted two
-near-duplicate posts). After I added more posts, two independent AI reviewers
-relabelled all 306 rows blind, without seeing the existing labels. They
-disagreed with the current label on 51 rows. For the 48 that were not cold
-rows, I read each post in full and decided: I changed 32 labels and kept the
-other 16, and each row's `note` says which. Rows where I kept the label are
-the real boundary cases. I did not change any cold row; three of them (rows 6,
-14 and 18) disagreed with the blind reviewers and are kept as my own cold
-labels. I have not personally re-read every one of the 286 AI-labelled rows;
-their notes say `student has not re-read`.
+were prelabelled by an AI tool that I gave my label definitions. Those labels
+then went through three checks. First, a second AI pass suggested corrections
+to the first 228 rows; I approved 27 clear ones (such as how-to questions that
+had been labelled `personal_advice`) and deleted two near-duplicate posts.
+Second, after I added more posts, two independent AI reviewers relabelled all
+306 rows blind, without seeing the existing labels. They disagreed with the
+current label on 51 rows. For the 48 that were not cold rows, I read each post
+in full and decided: I changed 32 labels and kept the other 16, and each row's
+`note` says which. The rows where I kept the label are the real boundary
+cases. I did not change any cold row; three of them (rows 6, 14 and 18)
+disagreed with the blind reviewers and are kept as my own cold labels. Third, I
+read through every label in `labels.csv` myself and made no further changes,
+so no row is still marked as pending review.
 
 **Counts per label:**
 
@@ -245,17 +252,22 @@ unit's results.
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`, fine-tuned for four-way
+classification with the notebook in this repo.
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 3 epochs, learning rate 2e-5, batch size 16, 128 tokens per post,
+seed 42. I trained on an Apple Silicon GPU (device `mps`, "Apple Silicon GPU
+(MPS)") with torch 2.14.1; `results.json` records the same device.
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** Nothing. The main run
+used the notebook's default settings.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
-
-
+**Split sizes:** The notebook splits `labels.csv` 70/15/15, stratified by
+label: 214 train, 46 validation, 46 test (306 rows in total). The test split has
+12 `explanation`, 9 `practical_guidance`, 12 `personal_advice` and 13
+`social_judgment` posts. No label has fewer than 8 test examples, though
+`practical_guidance` is close at 9, so its score will still move between seeds.
+`results.json` and `test_split.csv` are committed.
 
 ---
 
@@ -268,19 +280,47 @@ of next unit's variance. -->
      workflow and disclosing it costs you nothing. Not disclosing it is the
      problem. -->
 
-**Moment 1**
+**Moment 1: checking the AI prelabels**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* After the AI prelabelled 228 posts using my definitions, I
+  asked a second AI pass to read all of them again and suggest which labels
+  were wrong.
+- *What came back:* It flagged 42 rows, 27 of them clear errors and 15 judgment
+  calls. It also found a pattern: the word "setup" had pushed "why" questions
+  into `practical_guidance` ("Why are non-profit coding bootcamps setup?"), and
+  plain how-to questions (cooking chicken, getting Spotify to recommend more
+  varied music) had been labelled `personal_advice`. It found two near-duplicate
+  posts the notebook's check would have missed.
+- *What I changed:* I approved the 27 clear corrections and deleted one post
+  from each duplicate pair. I left the 15 judgment calls for my own review. The
+  corrections also changed which label was thinnest (it became
+  `personal_advice`), so I replaced my first stretch plan and added `personal_advice`
+  posts instead.
 
-**Moment 2**
+**Moment 2: blind relabelling**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I had two independent AI reviewers relabel all 306 posts
+  using my definitions and decision rules, without being shown any current label.
+- *What came back:* They agreed with the current label on 255 rows (83%) and
+  disagreed on 51, including three of my 20 cold rows.
+- *What I changed:* For each of the 48 disagreements on non-cold rows I read the
+  full post and decided myself. I changed 32 labels and kept 16. For example, I
+  moved a GED, cash-job and bank-card question to `practical_guidance` and kept
+  "Why is it acceptable for cops to run stop signs..." as `social_judgment`
+  even though one reviewer called it `explanation`. I did not change any of
+  my cold labels.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** 286 of the 306 rows in `labels.csv` were first
+labelled by an AI tool (Claude), which I gave my label definitions. Only the
+first 20 rows were labelled by me without help, and they are marked `cold
+review`. The extra 58 `personal_advice` posts for the stretch were found and
+selected by the same AI tool from a public archive of r/NoStupidQuestions, and
+2 of them were relabelled in review. I reviewed every label in the file myself
+after the AI checks described above. An AI coding assistant also drafted the
+wording of the Dataset section and the three hard cases from my decisions, and
+made two small edits to `criteria.md` (the reason under criterion 3, and a
+definition of "confident" in criterion 5); the numbers in my criteria are
+unchanged.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
