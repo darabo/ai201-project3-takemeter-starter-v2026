@@ -269,6 +269,39 @@ label: 214 train, 46 validation, 46 test (306 rows in total). The test split has
 `practical_guidance` is close at 9, so its score will still move between seeds.
 `results.json` and `test_split.csv` are committed.
 
+**Second training run (stretch): one hyperparameter changed.** I ran the
+same 306 rows again with only the learning rate changed, from 2e-5 to 5e-5.
+Epochs (3), batch size (16), 128 tokens, seed 42 and the 70/15/15 split were
+unchanged, so both runs were scored on the same 46 test posts. The result is
+saved as `results_lr5e-5.json`; the main run stays in `results.json`.
+
+| Measure | Run 1 (lr 2e-5) | Run 2 (lr 5e-5) | Change |
+|---|---|---|---|
+| Accuracy | 0.652 (30 of 46) | 0.696 (32 of 46) | +0.043 |
+| Macro F1 | 0.670 | 0.712 | +0.042 |
+| F1 `explanation` | 0.632 | 0.640 | +0.008 |
+| F1 `practical_guidance` | 0.750 | 0.889 | +0.139 |
+| F1 `personal_advice` | 0.727 | 0.727 | 0.000 |
+| F1 `social_judgment` | 0.571 | 0.593 | +0.022 |
+| Accuracy, most confident third | 0.800 | 1.000 | +0.200 |
+| Accuracy, least confident third | 0.533 | 0.467 | -0.067 |
+| Mean confidence when right | 0.341 | 0.550 | +0.209 |
+| Mean confidence when wrong | 0.322 | 0.436 | +0.114 |
+
+What moved: `practical_guidance` gained the most (6 of 9 test posts right to
+8 of 9), and `explanation` recall rose from 0.50 to 0.67 while its precision
+fell from 0.86 to 0.62, because four `social_judgment` posts were now predicted
+as `explanation`. `personal_advice` did not move at all (8 of 12 right in both
+runs, with the same four posts predicted as `social_judgment`). The biggest
+change was confidence. At 2e-5 the model was barely more confident when right
+than when wrong (0.34 against 0.32, close to the 0.25 a four-way guess would
+give), and at 5e-5 it became more confident overall and its most confident
+third was right every time. I think the lower rate left the model undertrained
+after 3 epochs on 214 examples, and I have not tested that. These are single
+runs on one seed, and one test post is worth 2.2 points of accuracy, so the
+overall gain is two more correct predictions and could be noise. The next unit
+repeats the comparison across three seeds.
+
 ---
 
 ## How I Used AI
