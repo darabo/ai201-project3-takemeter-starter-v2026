@@ -302,6 +302,46 @@ runs on one seed, and one test post is worth 2.2 points of accuracy, so the
 overall gain is two more correct predictions and could be noise. The next unit
 repeats the comparison across three seeds.
 
+**Extra examples (stretch): 50 more for the thinnest label.** The 250 base
+rows had `social_judgment` 89, `explanation` 76, `practical_guidance` 61 and
+`personal_advice` 24, so `personal_advice` was the thinnest label. I added 56
+more `personal_advice` posts, taking it to 80 of 306 rows. They came from the
+same public archive of r/NoStupidQuestions as the rest of the data
+(Arctic Shift): I pulled the 1,500 most recent submissions, dropped NSFW,
+removed and near-duplicate posts, and an AI tool selected the ones that asked
+what the author should do about their own emotional or social situation. I then
+reviewed them like every other row. Fifty-eight were collected, and two were
+relabelled in review, so 56 count. They are marked `stretch +50` in
+`labels.csv`, and `data/labels_base250.csv` is the file without them.
+
+To see what the extra examples did, I trained twice with the default settings
+(3 epochs, learning rate 2e-5, batch 16, seed 42): once on the 250 base rows
+(`results_250rows.json`) and once on all 306 rows (`results.json`).
+
+| Measure | 250 rows | 306 rows | Change |
+|---|---|---|---|
+| `personal_advice` rows in the file | 24 | 80 | +56 |
+| `personal_advice` posts in the test split | 4 | 12 | +8 |
+| F1 `personal_advice` | 0.000 | 0.727 | +0.727 |
+| Recall `personal_advice` | 0.000 | 0.667 | +0.667 |
+| Precision `personal_advice` | 0.000 | 0.800 | +0.800 |
+| F1 `explanation` | 0.588 | 0.632 | +0.044 |
+| F1 `practical_guidance` | 0.615 | 0.750 | +0.135 |
+| F1 `social_judgment` | 0.619 | 0.571 | -0.048 |
+| Accuracy | 0.579 (22 of 38) | 0.652 (30 of 46) | +0.073 |
+| Macro F1 | 0.456 | 0.670 | +0.214 |
+
+With 24 examples the model never predicted `personal_advice` at all. All four
+`personal_advice` test posts were predicted as `social_judgment`, which also
+pulled in 7 `explanation` and 5 `practical_guidance` posts and gave
+`social_judgment` a recall of 1.00 but a precision of 0.45. With 80 examples,
+the model got 8 of 12 `personal_advice` posts right. `social_judgment` fell a
+little (F1 0.619 to 0.571) because the model stopped using it as the label to
+guess when unsure. The two runs used different test posts (38 against 46, since
+the datasets differ), the `personal_advice` test set in the 250-row run is only
+4 posts, and this is one seed, so the size of the change is rough, but a label
+going from never predicted to mostly right is not a small effect.
+
 ---
 
 ## How I Used AI
