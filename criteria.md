@@ -53,11 +53,13 @@ whether you hit them:
 
 ## 1.
 
-<!-- Your criterion. It must name a number. -->
-
-
+Across all three Unit 6 seeds, overall held-out accuracy is at least **0.60**.
 
 **Why this target:**
+
+With four labels, a uniform guess would be right about 25% of the time. A 60%
+target asks the model to learn a useful signal from the wording of questions,
+not simply identify that every example came from the same subreddit.
 
 
 
@@ -65,11 +67,14 @@ whether you hit them:
 
 ## 2.
 
-<!-- Your criterion. -->
-
-
+Across all three Unit 6 seeds, held-out macro F1 is at least **0.55**.
 
 **Why this target:**
+
+`explanation` questions may be more common than the other three intents. Macro
+F1 weights `practical_guidance`, `personal_advice`, and `social_judgment`
+equally, so this target prevents a strong score on the largest label from
+standing in for useful performance on the rest of the taxonomy.
 
 
 
@@ -77,11 +82,15 @@ whether you hit them:
 
 ## 3.
 
-<!-- Your criterion. -->
-
-
+Across all three Unit 6 seeds, every individual label has held-out F1 of at
+least **0.40**.
 
 **Why this target:**
+
+The boundary between `personal_advice` and `social_judgment` is deliberately
+subtle, and the smallest label will have only about eight to ten examples in a
+15% held-out split. A 0.40 floor is demanding enough to catch a collapsed
+label, while allowing for the volatility of a small test sample.
 
 
 
@@ -89,11 +98,15 @@ whether you hit them:
 
 ## 4.
 
-<!-- Your criterion. -->
-
-
+In the final `labels.csv`, each label represents at least **15%** and no more
+than **40%** of the 250 labelled posts.
 
 **Why this target:**
+
+The four labels describe distinct question intents that appear regularly in
+r/NoStupidQuestions, so none should be a token category. Keeping the planned
+dataset in this range gives each intent enough examples to learn while avoiding
+an `explanation` majority that would encourage the model to guess one label.
 
 
 
@@ -101,11 +114,16 @@ whether you hit them:
 
 ## 5.
 
-<!-- Your criterion. -->
-
-
+Across all three Unit 6 seeds, the most-confident third of held-out predictions
+has accuracy of at least **0.65** and is at least **0.10** more accurate than
+the least-confident third.
 
 **Why this target:**
+
+This classifier is most useful when it can distinguish questions it recognizes
+clearly from borderline cases, especially near the `personal_advice` versus
+`social_judgment` boundary. A ten-point gap makes confidence an interpretable
+signal rather than a number that moves with no practical meaning.
 
 
 
