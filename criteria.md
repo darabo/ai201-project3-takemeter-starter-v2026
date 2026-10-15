@@ -88,7 +88,7 @@ least **0.40**.
 **Why this target:**
 
 The boundary between `personal_advice` and `social_judgment` is deliberately
-subtle, and the smallest label (about 39 of 250 rows) will have only about six
+subtle, and the smallest label (about 50 of 306 rows) will have only about seven
 examples in a 15% held-out split. A 0.40 floor is demanding enough to catch a collapsed
 label, while allowing for the volatility of a small test sample.
 
@@ -99,7 +99,7 @@ label, while allowing for the volatility of a small test sample.
 ## 4.
 
 In the final `labels.csv`, each label represents at least **15%** and no more
-than **40%** of the 250 labelled posts.
+than **40%** of the 306 labelled posts.
 
 **Why this target:**
 

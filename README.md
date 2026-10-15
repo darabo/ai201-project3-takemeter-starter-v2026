@@ -149,32 +149,40 @@ human-verification challenge, I retrieved the same public submissions from
 the Arctic Shift public Reddit archive instead.
 
 **How I labelled them:** I labelled the first 20 examples cold, without
-AI help, and marked them `cold review` in `labels.csv`. The other 228 rows
+AI help, and marked them `cold review` in `labels.csv`. The other 286 rows
 were prelabelled by an AI tool that I gave my label definitions. A second AI
-pass then read those rows and suggested changes. I approved 27 clear
-corrections (rows where the AI prelabel gave a how-to question the label
+pass then read the first 228 of those and suggested changes. I approved 27
+clear corrections (rows where the AI prelabel gave a how-to question the label
 `personal_advice`, or where the word "setup" had pushed a "why" question into
 `practical_guidance`), and each changed row says so in its `note`. I also
-deleted two near-duplicate posts. I have not yet read every one of the
-remaining prelabelled rows individually; the 200 rows still marked `pending
-student review before training` are the ones I have not checked row by row.
+deleted two near-duplicate posts. After those corrections `personal_advice`
+had become the thinnest label, so I collected 58 more public posts from the
+same archive and the AI tool selected and labelled the ones that fit
+`personal_advice`; they are marked `stretch +50` in the `note` column. I have
+not yet read every prelabelled row individually: the 258 rows still marked
+`pending student review before training` are the ones I have not checked row
+by row.
 
-**Counts per label (after the corrections above, before the remaining
-row-by-row review):**
+**Counts per label (before the remaining row-by-row review):**
 
 | Label | Count | Share |
 |---|---|---|
-| `explanation` | 78 | 31.5% |
-| `practical_guidance` | 50 | 20.2% |
-| `personal_advice` | 34 | 13.7% |
-| `social_judgment` | 86 | 34.7% |
-| **Total** | **248** | **100%** |
+| `explanation` | 78 | 25.5% |
+| `practical_guidance` | 50 | 16.3% |
+| `personal_advice` | 92 | 30.1% |
+| `social_judgment` | 86 | 28.1% |
+| **Total** | **306** | **100%** |
 
-The 50 stretch rows are marked `stretch +50` in the CSV. I added them to
-`social_judgment` because it was the thinnest label on the AI prelabels (37 of
-the first 200 rows). After the corrections, the first 198 rows (everything
-except the stretch rows) have 38 `social_judgment` and 33 `personal_advice`,
-so `personal_advice` is now the thinnest label.
+**Stretch: 50 extra examples for the thinnest label.** Before the extra
+examples, the 248 base rows had `social_judgment` 86, `explanation` 78,
+`practical_guidance` 50 and `personal_advice` 34, so `personal_advice` was
+the thinnest label. I added 58 `personal_advice` rows, which took it from 34 to
+92 and from 13.7% to 30.1% of the file. I had originally added 50
+`social_judgment` rows as this stretch item because that label looked thinnest
+on the AI prelabels (37 of the first 200 rows). After the corrections above
+changed which label was thinnest, I replaced that plan: the earlier 50 rows
+are kept as ordinary data and their notes say so. What happens to the
+`personal_advice` scores will be in the next unit's results.
 
 **Three hard cases**
 
