@@ -5,6 +5,7 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+explanation: Is it asking for a fact, cause, name, or how something works?
+practical_guidance: Is it asking for a method or recommended action for a practical/technical task?
+personal_advice: Is it asking what the author should do in their own emotional, social, or relationship situation?
+social_judgment: Is it asking whether something is normal, acceptable, common, or preferable in society?
