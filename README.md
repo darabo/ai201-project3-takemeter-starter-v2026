@@ -150,39 +150,42 @@ the Arctic Shift public Reddit archive instead.
 
 **How I labelled them:** I labelled the first 20 examples cold, without
 AI help, and marked them `cold review` in `labels.csv`. The other 286 rows
-were prelabelled by an AI tool that I gave my label definitions. A second AI
-pass then read the first 228 of those and suggested changes. I approved 27
-clear corrections (rows where the AI prelabel gave a how-to question the label
-`personal_advice`, or where the word "setup" had pushed a "why" question into
-`practical_guidance`), and each changed row says so in its `note`. I also
-deleted two near-duplicate posts. After those corrections `personal_advice`
-had become the thinnest label, so I collected 58 more public posts from the
-same archive and the AI tool selected and labelled the ones that fit
-`personal_advice`; they are marked `stretch +50` in the `note` column. I have
-not yet read every prelabelled row individually: the 258 rows still marked
-`pending student review before training` are the ones I have not checked row
-by row.
+were prelabelled by an AI tool that I gave my label definitions. I then had
+every one of those rows checked in two ways. A second AI pass suggested
+corrections to the first 228 (I approved 27 clear ones, such as how-to
+questions that had been labelled `personal_advice`, and I deleted two
+near-duplicate posts). After I added more posts, two independent AI reviewers
+relabelled all 306 rows blind, without seeing the existing labels. They
+disagreed with the current label on 51 rows. For the 48 that were not cold
+rows, I read each post in full and decided: I changed 32 labels and kept the
+other 16, and each row's `note` says which. Rows where I kept the label are
+the real boundary cases. I did not change any cold row; three of them (rows 6,
+14 and 18) disagreed with the blind reviewers and are kept as my own cold
+labels. I have not personally re-read every one of the 286 AI-labelled rows;
+their notes say `student has not re-read`.
 
-**Counts per label (before the remaining row-by-row review):**
+**Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-| `explanation` | 78 | 25.5% |
-| `practical_guidance` | 50 | 16.3% |
-| `personal_advice` | 92 | 30.1% |
-| `social_judgment` | 86 | 28.1% |
+| `explanation` | 76 | 24.8% |
+| `practical_guidance` | 61 | 19.9% |
+| `personal_advice` | 80 | 26.1% |
+| `social_judgment` | 89 | 29.1% |
 | **Total** | **306** | **100%** |
 
 **Stretch: 50 extra examples for the thinnest label.** Before the extra
-examples, the 248 base rows had `social_judgment` 86, `explanation` 78,
-`practical_guidance` 50 and `personal_advice` 34, so `personal_advice` was
-the thinnest label. I added 58 `personal_advice` rows, which took it from 34 to
-92 and from 13.7% to 30.1% of the file. I had originally added 50
-`social_judgment` rows as this stretch item because that label looked thinnest
-on the AI prelabels (37 of the first 200 rows). After the corrections above
-changed which label was thinnest, I replaced that plan: the earlier 50 rows
-are kept as ordinary data and their notes say so. What happens to the
-`personal_advice` scores will be in the next unit's results.
+examples, the 250 base rows had `social_judgment` 89, `explanation` 76,
+`practical_guidance` 61 and `personal_advice` 24, so `personal_advice` was
+the thinnest label. I added 56 `personal_advice` rows (marked `stretch +50` in
+`labels.csv`), which took it from 24 to 80 and from 9.6% to 26.1% of the file.
+I had originally added 50 `social_judgment` rows as this stretch item because
+that label looked thinnest on the AI prelabels (37 of the first 200 rows).
+After the label corrections changed which label was thinnest, I replaced that
+plan: the earlier 50 rows are kept as ordinary data, and their notes say so. I
+collected 58 posts for the new stretch, and two were relabelled in review, so
+56 count. What happens to the `personal_advice` scores will be in the next
+unit's results.
 
 **Three hard cases**
 

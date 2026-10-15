@@ -88,7 +88,7 @@ least **0.40**.
 **Why this target:**
 
 The boundary between `personal_advice` and `social_judgment` is deliberately
-subtle, and the smallest label (about 50 of 306 rows) will have only about seven
+subtle, and the smallest label (about 61 of 306 rows) will have only about nine
 examples in a 15% held-out split. A 0.40 floor is demanding enough to catch a collapsed
 label, while allowing for the volatility of a small test sample.
 
